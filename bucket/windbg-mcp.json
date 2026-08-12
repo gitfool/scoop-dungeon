@@ -8,7 +8,10 @@
         "",
         "For TTD replay and crash-dump !analyze, bundle the WinDbg engine DLLs next to the binary.",
         "If WinDbg (Microsoft.WinDbg) is installed from the Store, post_install copies them automatically.",
-        "Otherwise, see: https://github.com/glslang/windbg-mcp#bundling-the-windbg-engine"
+        "Otherwise, see: https://github.com/glslang/windbg-mcp#bundling-the-windbg-engine",
+        "",
+        "Disconnect the MCP server from any connected client before updating (scoop update windbg-mcp).",
+        "A connected client holds the exe open, since the server re-executes its own image to spawn engine workers."
     ],
     "architecture": {
         "64bit": {
@@ -25,12 +28,12 @@
         "        $src = Join-Path $wd $dll",
         "        if (Test-Path $src) { Copy-Item $src $dir -Force }",
         "    }",
-        "    $subdirs = @('ttd','winext')",
+        "    $subdirs = @('ttd','winext','winxp')",
         "    foreach ($sub in $subdirs) {",
         "        $src = Join-Path $wd $sub",
         "        if (Test-Path $src) { Copy-Item $src $dir -Recurse -Force }",
         "    }",
-        "    Write-Host 'WinDbg engine bundled for TTD replay and !analyze support.' -ForegroundColor Green",
+        "    Write-Host 'WinDbg engine bundled for TTD replay, !analyze and kernel debugging support.' -ForegroundColor Green",
         "} else {",
         "    Write-Host 'WinDbg (Microsoft.WinDbg) not found. Basic debugging works, but TTD replay' -ForegroundColor Yellow",
         "    Write-Host 'and !analyze require the WinDbg engine. See: scoop info windbg-mcp' -ForegroundColor Yellow",
