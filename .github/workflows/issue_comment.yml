@@ -1,0 +1,21 @@
+name: issue-comment
+on:
+  issue_comment:
+    types: [ created ]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  handler:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@main
+
+      - name: Run handler
+        uses: ScoopInstaller/GithubActions@main
+        if: startsWith(github.event.comment.body, '/verify')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

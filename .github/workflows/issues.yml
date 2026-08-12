@@ -1,0 +1,21 @@
+name: issues
+on:
+  issues:
+    types: [ opened, labeled ]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  handler:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@main
+
+      - name: Run handler
+        uses: ScoopInstaller/GithubActions@main
+        if: github.event.action == 'opened' || (github.event.action == 'labeled' && contains(github.event.issue.labels.*.name, 'verify'))
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
