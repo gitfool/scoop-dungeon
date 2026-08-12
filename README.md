@@ -21,6 +21,7 @@ scoop bucket add dungeon https://github.com/gitfool/scoop-dungeon
 
 | Name | Description | Command | Version |
 | --- | --- | --- | --- |
+| [windbg-mcp](https://github.com/glslang/windbg-mcp) | MCP server exposing WinDbg/DbgEng to AI agents over stdio | `scoop install windbg-mcp` | [![Version](https://img.shields.io/scoop/v/windbg-mcp?bucket=https%3A%2F%2Fgithub.com%2Fgitfool%2Fscoop-dungeon&label=&logo=scoop)](bucket/windbg-mcp.json) |
 
 ## How do I update apps?
 
